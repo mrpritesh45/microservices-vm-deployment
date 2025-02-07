@@ -1,3 +1,5 @@
+---
+
 # **Flask Microservices on Virtual Machines**  
 
 This repository contains two Flask-based microservices designed to run on separate Virtual Machines (VMs). Each microservice provides basic API endpoints and communicates over a network using a bridged adapter.  
@@ -7,10 +9,12 @@ This repository contains two Flask-based microservices designed to run on separa
 1. **Microservice 1 (VM1)**
    - Runs on **port 5000**
    - Provides a basic greeting and a multiplication API  
+   - [Source Code](https://github.com/mrpritesh45/microservices-vm-deployment/blob/main/microservice1.py)  
 
 2. **Microservice 2 (VM2)**
    - Runs on **port 5001**
    - Provides similar functionality but runs independently on another VM  
+   - [Source Code](https://github.com/mrpritesh45/microservices-vm-deployment/blob/main/microservice2.py)  
 
 ## **Endpoints**  
 
@@ -34,52 +38,18 @@ pip install flask
 ### **2. Create and Run Microservices**  
 
 #### **On VM1 (192.168.0.114)**
-Create `microservice1.py`:  
-```python
-from flask import Flask
-
-app = Flask(__name__)
-
-@app.route("/")
-def hello_vm1():
-    return "Hello from VM1!"
-
-@app.route("/multiply/<int:a>/<int:b>")
-def multiply_vm1(a, b):
-    result = a * b
-    return f"Result (From VM1) of {a} x {b} = {result}"
-
-if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000)
-```
-Run the microservice:  
-```bash
-python3 microservice1.py
-```
+- Download and save [microservice1.py](https://github.com/mrpritesh45/microservices-vm-deployment/blob/main/microservice1.py).  
+- Start the microservice:  
+  ```bash
+  python3 microservice1.py
+  ```
 
 #### **On VM2 (192.168.0.109)**
-Create `microservice2.py`:  
-```python
-from flask import Flask
-
-app = Flask(__name__)
-
-@app.route("/")
-def hello_vm2():
-    return "Hello from VM2!"
-
-@app.route("/multiply/<int:a>/<int:b>")
-def multiply_vm2(a, b):
-    result = a * b
-    return f"Result (From VM2) of {a} x {b} = {result}"
-
-if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5001)
-```
-Run the microservice:  
-```bash
-python3 microservice2.py
-```
+- Download and save [microservice2.py](https://github.com/mrpritesh45/microservices-vm-deployment/blob/main/microservice2.py).  
+- Start the microservice:  
+  ```bash
+  python3 microservice2.py
+  ```
 
 ## **Testing the Microservices**  
 
